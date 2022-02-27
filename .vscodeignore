@@ -6,3 +6,5 @@ test/**
 **/jsconfig.json
 **/*.map
 **/.eslintrc.json
+.github
+**/.prettierignore

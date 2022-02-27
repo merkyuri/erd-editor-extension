@@ -1,25 +1,53 @@
 {
-	"env": {
-		"browser": false,
-		"commonjs": true,
-		"es6": true,
-		"node": true,
-		"mocha": true
-	},
-	"parserOptions": {
-		"ecmaVersion": 2018,
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"sourceType": "module"
-	},
-	"rules": {
-		"no-const-assign": "warn",
-		"no-this-before-super": "warn",
-		"no-undef": "warn",
-		"no-unreachable": "warn",
-		"no-unused-vars": "warn",
-		"constructor-super": "warn",
-		"valid-typeof": "warn"
-	}
+  "env": {
+    "browser": false,
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended",
+    "prettier"
+  ],
+  "plugins": ["react", "import", "prettier", "jest"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    // "no-this-before-super": "warn",
+    // "constructor-super": "warn",
+    "curly": "warn",
+    "eqeqeq": "warn",
+    "eol-last": ["error", "always"],
+    "indent": ["error", 2],
+    "no-console": "off",
+    "no-extra-semi": "warn",
+    "no-multiple-empty-lines": "warn",
+    "no-throw-literal": "warn",
+    "no-trailing-spaces": "error",
+    "semi": "warn",
+    "quotes": ["error", "double"],
+    "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", ["parent", "sibling"], "index"],
+        "newlines-between": "always"
+      }
+    ]
+  }
 }
