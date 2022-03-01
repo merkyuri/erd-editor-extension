@@ -32,6 +32,7 @@
             "filenamePattern": "*.erdsh"
           }
         ]
+<<<<<<< HEAD
       }
     ],
     "keybindings": [
@@ -40,6 +41,8 @@
         "key": "ctrl+e",
         "mac": "cmd+e",
         "when": "editorFocus && !editorReadonly && resourceExtname == .erdsh"
+=======
+>>>>>>> 3ed02b3 (Feat: add contribution point)
       }
     ]
   },
@@ -54,10 +57,13 @@
     "lint-staged": "lint-staged"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.3",
+=======
+>>>>>>> 3ed02b3 (Feat: add contribution point)
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-import": "^2.25.4",
@@ -70,11 +76,15 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.4",
+<<<<<<< HEAD
     "prettier": "2.5.1",
     "rimraf": "^3.0.2",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
+=======
+    "prettier": "2.5.1"
+>>>>>>> 3ed02b3 (Feat: add contribution point)
   },
   "dependencies": {
     "react": "^17.0.2",
