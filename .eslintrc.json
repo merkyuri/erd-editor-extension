@@ -27,8 +27,8 @@
     "sourceType": "module"
   },
   "rules": {
-    // "no-this-before-super": "warn",
-    // "constructor-super": "warn",
+    "no-this-before-super": "warn",
+    "constructor-super": "warn",
     "curly": "warn",
     "eqeqeq": "warn",
     "eol-last": ["error", "always"],
