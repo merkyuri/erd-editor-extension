@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-// const ERDEditorProvider = require("ERDEditorProvider");
+const DiagramEditorProvider = require("DiagramEditorProvider");
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -7,22 +7,15 @@ const vscode = require("vscode");
 function activate(context) {
   console.log("Congratulations, your extension is now active!");
 
-  let disposable = vscode.commands.registerCommand(
-    "erd-editor-schema-helper.webview",
-    function () {
+  context.subscriptions.push(DiagramEditorProvider.register(context));
+  context.subscriptions.push(
+    vscode.commands.registerCommand("erd-editor-schema-helper.webview", () => {
       vscode.window.showInformationMessage(
         "Hello World from ERD Editor-Schema Helper!"
       );
-    }
+      return;
+    })
   );
-
-  context.subscriptions.push(disposable);
-
-  // context.subscriptions.push(
-  //   vscode.commands.registerCommand("erd-editor-schema-helper.webview", () => {
-  //     ERDEditorProvider.createAndShow(context.extensionPath);
-  //   })
-  // );
 }
 
 function deactivate() {}
