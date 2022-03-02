@@ -5,9 +5,13 @@
     "checkJs": true,  /* Typecheck .js files. */
     "lib": [
       "ES2020"
-    ]
+    ],
+    "baseUrl": "src"
   },
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "src"
   ]
 }
