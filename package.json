@@ -1,8 +1,9 @@
 {
   "name": "erd-editor-schema-helper",
+  "version": "0.0.1",
   "displayName": "ERD Editor-Schema Helper",
   "description": "Entity Relationship Diagram Editor.",
-  "version": "0.0.1",
+  "author": "",
   "engines": {
     "vscode": "^1.64.0"
   },
@@ -12,7 +13,7 @@
   "activationEvents": [
     "onCommand:erd-editor-schema-helper.webview",
     "onWebviewPanel:erd-editor-schema-helper.webview",
-	  "onCustomEditor:erd-editor-schema-helper.editor"
+    "onCustomEditor:erd-editor-schema-helper.editor"
   ],
   "main": "src/extension.js",
   "contributes": {
@@ -35,6 +36,9 @@
     ]
   },
   "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "prebuild": "rimraf dist",
+    "build": "webpack --progress --mode production",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
@@ -42,20 +46,32 @@
     "lint-staged": "lint-staged"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^26.1.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.2",
+    "file-loader": "^6.2.0",
     "glob": "^7.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.4",
-    "prettier": "2.5.1"
+    "prettier": "2.5.1",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
   },
   "lint-staged": {
     "*.{js, jsx, html, css, json}": [

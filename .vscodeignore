@@ -8,3 +8,4 @@ test/**
 **/.eslintrc.json
 .github
 **/.prettierignore
+public/index.html

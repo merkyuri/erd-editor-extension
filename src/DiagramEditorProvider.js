@@ -267,7 +267,7 @@ class DiagramEditorProvider {
 
   getHtmlForWebview(webview) {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._context.extensionUri, "media", "sudo_boo.jpeg")
+      vscode.Uri.joinPath(this._context.extensionUri, "app", "index.jsx")
     );
     const nonce = getNonce();
 
