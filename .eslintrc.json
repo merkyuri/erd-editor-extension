@@ -8,6 +8,14 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
     }
   },
   "extends": [
@@ -38,6 +46,7 @@
     "no-multiple-empty-lines": "warn",
     "no-throw-literal": "warn",
     "no-trailing-spaces": "error",
+    "no-undef": "warn",
     "semi": "warn",
     "quotes": ["error", "double"],
     "prettier/prettier": "error",
