@@ -1,7 +1,13 @@
 import React from "react";
 
+import Toolbar from "./components/Toolbar.jsx";
+
 function App() {
-  return <div>App</div>;
+  return (
+    <>
+      <Toolbar />
+    </>
+  );
 }
 
 export default App;
