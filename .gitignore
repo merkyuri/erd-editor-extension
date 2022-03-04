@@ -3,5 +3,5 @@ node_modules
 .vscode-test/
 *.vsix
 .prettierignore
-dist/
+dist
 public/index.html

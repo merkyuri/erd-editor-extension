@@ -118,7 +118,7 @@ class DiagramEditorProvider {
    */
   constructor(_context) {
     this._context = _context;
-    this.webviews = new WebviewCollection();
+    this.webview = new WebviewCollection();
     this._onDidChangeCustomDocument = new vscode.EventEmitter();
     this.onDidChangeCustomDocument = this._onDidChangeCustomDocument.event;
     this._requestId = 1;
@@ -131,7 +131,6 @@ class DiagramEditorProvider {
   static register(context) {
     return vscode.window.registerCustomEditorProvider(
       DiagramEditorProvider.viewType,
-      // @ts-ignore !WARNING!
       new DiagramEditorProvider(context),
       {
         webviewOptions: {
@@ -154,14 +153,12 @@ class DiagramEditorProvider {
       openContext.backupId,
       {
         getFileData: async () => {
-          const webviewsForDocument = Array.from(
-            this.webviews.get(document.uri)
-          );
-          if (!webviewsForDocument.length) {
+          const webviewForDocument = Array.from(this.webview.get(document.uri));
+          if (!webviewForDocument.length) {
             throw new Error("Could not find webview to save for");
           }
 
-          const panel = webviewsForDocument[0];
+          const panel = webviewForDocument[0];
           const response = await this.postMessageWithResponse(
             panel,
             "getFileData",
@@ -183,7 +180,7 @@ class DiagramEditorProvider {
     );
     listeners.push(
       document.onDidChangeContent((/** @type {{ content: any; }} */ e) => {
-        for (const webviewPanel of this.webviews.get(document.uri)) {
+        for (const webviewPanel of this.webview.get(document.uri)) {
           this.postMessage(webviewPanel, "update", {
             value: e.content,
           });
@@ -196,7 +193,7 @@ class DiagramEditorProvider {
 
   // eslint-disable-next-line no-unused-vars
   async resolveCustomEditor(document, webviewPanel, _token) {
-    this.webviews.add(document.uri, webviewPanel);
+    this.webview.add(document.uri, webviewPanel);
     webviewPanel.webview.options = {
       enableScripts: true,
     };
@@ -227,15 +224,19 @@ class DiagramEditorProvider {
   saveCustomDocument(document, cancellation) {
     return document.save(cancellation);
   }
+
   saveCustomDocumentAs(document, destination, cancellation) {
     return document.saveAs(destination, cancellation);
   }
+
   revertCustomDocument(document, cancellation) {
     return document.revert(cancellation);
   }
+
   backupCustomDocument(document, context, cancellation) {
     return document.backup(context.destination, cancellation);
   }
+
   /**
    * @param {{ webview: { postMessage: (arg0: { type: any; requestId: number; body: any; }) => void; }; }} panel
    * @param {string} type
@@ -247,10 +248,12 @@ class DiagramEditorProvider {
     panel.webview.postMessage({ type, requestId, body });
     return p;
   }
+
   postMessage(panel, type, body) {
     panel.webview.postMessage({ type, body });
   }
-  /* eslint-disable indent*/
+
+  /* eslint-disable */
   onMessage(document, message) {
     switch (message.type) {
       case "value":
@@ -263,7 +266,7 @@ class DiagramEditorProvider {
       }
     }
   }
-  /* eslint-disable indent*/
+  /* eslint-disable */
 
   getHtmlForWebview(webview) {
     const scriptUri = webview.asWebviewUri(
@@ -294,7 +297,7 @@ class DiagramEditorProvider {
 DiagramEditorProvider.viewType = "erd-editor-schema-helper.editor";
 class WebviewCollection {
   constructor() {
-    this._webviews = new Set();
+    this._webview = new Set();
   }
 
   /**
@@ -302,7 +305,7 @@ class WebviewCollection {
    */
   *get(uri) {
     const key = uri.toString();
-    for (const entry of this._webviews) {
+    for (const entry of this._webview) {
       if (entry.resource === key) {
         yield entry.webviewPanel;
       }
@@ -315,9 +318,9 @@ class WebviewCollection {
    */
   add(uri, webviewPanel) {
     const entry = { resource: uri.toString(), webviewPanel };
-    this._webviews.add(entry);
+    this._webview.add(entry);
     webviewPanel.onDidDispose(() => {
-      this._webviews.delete(entry);
+      this._webview.delete(entry);
     });
   }
 }
