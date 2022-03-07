@@ -33,6 +33,14 @@
           }
         ]
       }
+    ],
+    "keybindings": [
+      {
+        "command": "erd-editor-schema-helper.editor",
+        "key": "ctrl+e",
+        "mac": "cmd+e",
+        "when": "editorFocus && !editorReadonly && resourceExtname == .erdsh"
+      }
     ]
   },
   "scripts": {
