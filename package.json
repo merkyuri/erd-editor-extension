@@ -11,16 +11,15 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:erd-editor-schema-helper.webview",
-    "onWebviewPanel:erd-editor-schema-helper.webview",
+    "onCommand:erd-editor-schema-helper.helloworld",
     "onCustomEditor:erd-editor-schema-helper.editor"
   ],
-  "main": "src/extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "erd-editor-schema-helper.webview",
-        "title": "ERD Editor-Schema Helper"
+        "command": "erd-editor-schema-helper.helloworld",
+        "title": "Create new ERD Editor-Schema Helper"
       }
     ],
     "customEditors": [

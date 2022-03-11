@@ -7,10 +7,8 @@ function disposeAll(disposables) {
   }
 }
 class Disposable {
-  constructor() {
-    this._isDisposed = false;
-    this._disposables = [];
-  }
+  _isDisposed = false;
+  _disposables = [];
 
   dispose() {
     if (this._isDisposed) {
