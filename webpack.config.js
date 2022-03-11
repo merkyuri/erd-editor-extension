@@ -4,12 +4,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
+  devtool: "eval-source-map",
   entry: {
-    app: ["./app/index.jsx"],
+    app: path.resolve(__dirname, "app", "index.jsx"),
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist", "app"),
     filename: "index.bundle.js",
+  },
+  resolve: {
+    // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
+    extensions: [".js", ".jsx"],
   },
   module: {
     rules: [
