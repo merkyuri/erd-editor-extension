@@ -303,11 +303,6 @@ class DiagramEditorDocument extends Disposable {
     this._uri = uri;
     this._documentData = initialContent;
     this._delegate = delegate;
-    // this._uri;
-    // this._documentData;
-    // this._edits = [];
-    // this._saveEdits = [];
-    // this._delegate;
   }
 
   get uri() {
@@ -317,8 +312,6 @@ class DiagramEditorDocument extends Disposable {
   get documentData() {
     return this._documentData;
   }
-
-  // onDidDispose
 
   dispose() {
     this._onDidDispose.fire();
