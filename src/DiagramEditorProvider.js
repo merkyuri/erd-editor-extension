@@ -1,3 +1,5 @@
+const path = require("path");
+
 const vscode = require("vscode");
 
 const { Disposable, disposeAll } = require("./dispose");
@@ -284,17 +286,6 @@ const getNonce = require("./util");
  * Define the doc (the data model)
  */
 class DiagramEditorDocument extends Disposable {
-  constructor(uri, initialContent, delegate) {
-    super();
-    this._uri = uri;
-    this._documentData = initialContent;
-    this._delegate = delegate;
-    // this._uri;
-    // this._documentData;
-    // this._edits = [];
-    // this._saveEdits = [];
-    // this._delegate;
-  }
   _uri;
   _documentData;
   _edits = [];
@@ -307,6 +298,13 @@ class DiagramEditorDocument extends Disposable {
   _onDidChange = this._register(new vscode.EventEmitter());
   onDidChange = this._onDidChange.event;
 
+  constructor(uri, initialContent, delegate) {
+    super();
+    this._uri = uri;
+    this._documentData = initialContent;
+    this._delegate = delegate;
+  }
+
   get uri() {
     return this._uri;
   }
@@ -314,8 +312,6 @@ class DiagramEditorDocument extends Disposable {
   get documentData() {
     return this._documentData;
   }
-
-  // onDidDispose
 
   dispose() {
     this._onDidDispose.fire();
@@ -626,10 +622,20 @@ class DiagramEditorProvider {
   }
 
   getHtmlForWebview(webview) {
-    const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._context.extensionUri, "app", "index.jsx")
-    );
     const nonce = getNonce();
+    // const scriptUri = webview.asWebviewUri(
+    //   vscode.Uri.joinPath(
+    //     this._context.extensionUri,
+    //     "dist",
+    //     "app",
+    //     "index.bundle.js"
+    //   )
+    // );
+    const scriptPath = vscode.Uri.file(
+      path.join(this._context.extensionUri, "dist", "app", "bundle.js")
+    );
+
+    const scriptUri = webview.asWebviewUri(scriptPath);
 
     return /* html */ `
     <!DOCTYPE html>

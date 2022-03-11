@@ -1,10 +1,10 @@
 const vscode = require("vscode");
-const DiagramEditorProvider = require("DiagramEditorProvider");
+
+const DiagramEditorProvider = require("./DiagramEditorProvider.js");
 
 function activate(context) {
   console.log("Congratulations, your extension is now active!");
 
-  // context.subscriptions.push(DiagramEditorProvider.register(context));
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "erd-editor-schema-helper.helloworld",

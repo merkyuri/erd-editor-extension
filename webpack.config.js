@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  devtool: "eval-source-map",
+  devtool: "source-map",
   entry: {
     app: path.resolve(__dirname, "app", "index.jsx"),
   },
