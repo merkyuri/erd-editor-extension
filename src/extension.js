@@ -10,17 +10,36 @@ function activate(context) {
       "erd-editor-schema-helper.helloworld",
       () => {
         vscode.window.showInformationMessage(
-          "Hello World from ERD Editor-Schema Helper!"
+          "Welcome to ERD Editor-Schema Helper extension."
         );
       }
-    ),
-    vscode.commands.registerCommand("erd-editor-schema-helper.editor", () => {
-      DiagramEditorProvider.register(context);
-    })
+    )
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "erd-editor-schema-helper.createEditor",
+      () => {
+        DiagramEditorProvider.register(context);
+
+        vscode.window
+          .showInformationMessage(
+            "Generated the ERD Editor with success!",
+            "Open"
+          )
+          .then((selected) => {
+            if (!selected) {
+              return;
+            }
+          });
+      }
+    )
   );
 }
 
-function deactivate() {}
+function deactivate() {
+  console.info("Extension is deactivating.");
+}
 
 module.exports = {
   activate,
