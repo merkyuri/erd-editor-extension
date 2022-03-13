@@ -11,20 +11,22 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:erd-editor-schema-helper.helloworld",
-    "onCustomEditor:erd-editor-schema-helper.editor"
+    "onCommand:erdEditor.webview",
+    "onWebviewPanel:erdEditor.webview",
+    "onCustomEditor:erdEditor.editor",
+    "onView:erdEditor.webview"
   ],
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "erd-editor-schema-helper.helloworld",
-        "title": "Create new ERD Editor-Schema Helper"
+        "command": "erdEditor.webview",
+        "title": "ERD Editor-Schema Helper"
       }
     ],
     "customEditors": [
       {
-        "viewType": "erd-editor-schema-helper.editor",
+        "viewType": "erdEditor.editor",
         "displayName": "ERD Editor-Schema Helper",
         "selector": [
           {
@@ -33,11 +35,81 @@
         ]
       }
     ],
+    "languages": [
+      {
+        "id": "erdEditor",
+        "aliases": [
+          "erdEditor",
+          "erdsh",
+          "erd"
+        ],
+        "extensions": [
+          ".erdsh"
+        ]
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "erdEditor.webview",
+          "when": "resourceLangId == erdsh",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "erdEditor.webview",
+          "when": "resourceLangId == erdsh",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "erdEditor.webview",
+          "when": "resourceLangId == erdsh",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "erdEditor.webview",
+          "when": "resourceLangId == erdsh",
+          "group": "navigation"
+        }
+      ],
+      "touchBar": [
+        {
+          "command": "erdEditor.webview",
+          "when": "resourceLangId == erdsh",
+          "group": "navigation"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "erdEditor",
+          "title": "ERD Editor-Schema Helper",
+          "icon": ""
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "erdEditor.webview",
+          "name": "ERD Editor-Schema Helper",
+          "when": "resourceLangId == erdsh",
+          "contextualTitle": "ERD Editor-Schema Helper"
+        }
+      ]
+    },
     "keybindings": [
       {
-        "command": "erd-editor-schema-helper.editor",
-        "key": "ctrl+e",
-        "mac": "cmd+e",
+        "command": "erdEditor.editor",
+        "key": "shift+ctrl+e",
+        "mac": "shift+cmd+e",
         "when": "editorFocus && !editorReadonly && resourceExtname == .erdsh"
       }
     ]
