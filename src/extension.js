@@ -13,23 +13,7 @@ function activate(context) {
     })
   );
 
-  context.subscriptions.push(
-    // vscode.commands.registerCommand("erdEditor.webview", () => {
-    //   DiagramEditorProvider.register(context);
-
-    //   vscode.window
-    //     .showInformationMessage(
-    //       "Generated the ERD Editor with success!",
-    //       "Open"
-    //     )
-    //     .then((selected) => {
-    //       if (!selected) {
-    //         return;
-    //       }
-    //     });
-    // })
-    DiagramEditorProvider.register(context)
-  );
+  context.subscriptions.push(DiagramEditorProvider.register(context));
 }
 
 function deactivate() {

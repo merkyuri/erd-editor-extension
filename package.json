@@ -15,7 +15,6 @@
     "onCommand:erdEditor.helloworld",
     "onCommand:erdEditor.webview",
     "onWebviewPanel:erdEditor.webview",
-    "onCustomEditor:erdEditor.editor",
     "onView:erdEditor.webview"
   ],
   "main": "./src/extension.js",
@@ -119,7 +118,7 @@
     },
     "keybindings": [
       {
-        "command": "erdEditor.editor",
+        "command": "erdEditor.webview",
         "key": "shift+ctrl+e",
         "mac": "shift+cmd+e",
         "when": "editorFocus && !editorReadonly && resourceExtname == .erdsh"

@@ -47,6 +47,7 @@
     "no-throw-literal": "warn",
     "no-trailing-spaces": "error",
     "no-undef": "warn",
+    "no-useless-escape": "warn",
     "semi": "warn",
     "quotes": ["error", "double"],
     "prettier/prettier": "error",
