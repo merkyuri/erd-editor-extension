@@ -132,30 +132,27 @@ class DiagramEditorProvider {
   static newERDiagramFileId = 1;
 
   static register(context) {
-    vscode.commands.registerCommand(
-      "erd-editor-schema-helper.createEditor",
-      () => {
-        const workspaceFolders = vscode.workspace.workspaceFolders;
+    vscode.commands.registerCommand("erdEditor.webview", () => {
+      const workspaceFolders = vscode.workspace.workspaceFolders;
 
-        if (!workspaceFolders) {
-          vscode.window.showErrorMessage(
-            "Creating new Diagram files currently requires opening a workspace."
-          );
-          return;
-        }
-
-        const uri = vscode.Uri.joinPath(
-          workspaceFolders[0].uri,
-          `new-${DiagramEditorProvider.newERDiagramFileId++}.erdsh`
-        ).with({ scheme: "untitled" });
-
-        vscode.commands.executeCommand(
-          "vscode.openWith",
-          uri,
-          DiagramEditorProvider.viewType
+      if (!workspaceFolders) {
+        vscode.window.showErrorMessage(
+          "Creating new Diagram files currently requires opening a workspace."
         );
+        return;
       }
-    );
+
+      const uri = vscode.Uri.joinPath(
+        workspaceFolders[0].uri,
+        `new-${DiagramEditorProvider.newERDiagramFileId++}.erdsh`
+      ).with({ scheme: "untitled" });
+
+      vscode.commands.executeCommand(
+        "vscode.openWith",
+        uri,
+        DiagramEditorProvider.viewType
+      );
+    });
 
     return vscode.window.registerCustomEditorProvider(
       DiagramEditorProvider.viewType,
@@ -170,7 +167,7 @@ class DiagramEditorProvider {
     );
   }
 
-  static viewType = "erd-editor-schema-helper.customEditor";
+  static viewType = "erdEditor.webview";
   webview = new WebviewCollection();
 
   async openCustomDocument(uri, openContext) {
