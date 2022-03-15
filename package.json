@@ -1,6 +1,7 @@
 {
   "name": "erd-editor-schema-helper",
   "version": "0.0.1",
+  "publisher": "merkyuri",
   "displayName": "ERD Editor-Schema Helper",
   "description": "Entity Relationship Diagram Editor.",
   "author": "",
@@ -11,6 +12,7 @@
     "Other"
   ],
   "activationEvents": [
+    "onCommand:erdEditor.helloworld",
     "onCommand:erdEditor.webview",
     "onWebviewPanel:erdEditor.webview",
     "onCustomEditor:erdEditor.editor",
@@ -20,8 +22,18 @@
   "contributes": {
     "commands": [
       {
+        "command": "erdEditor.helloworld",
+        "title": "Greetings from ERD Editor-Schema Helper",
+        "category": "erdsh",
+        "icon": {
+          "light": "./icons/tree.svg",
+          "dark": "./icons/tree.svg"
+        }
+      },
+      {
         "command": "erdEditor.webview",
-        "title": "ERD Editor-Schema Helper"
+        "title": "Webview for ERD Editor-Schema Helper",
+        "category": "erdsh"
       }
     ],
     "customEditors": [
@@ -90,7 +102,7 @@
         {
           "id": "erdEditor",
           "title": "ERD Editor-Schema Helper",
-          "icon": ""
+          "icon": "./icons/diagram.svg"
         }
       ]
     },
@@ -115,9 +127,10 @@
     ]
   },
   "scripts": {
+    "vscode:prepublish": "npm run build",
     "start": "webpack-dev-server --mode development",
-    "prebuild": "rimraf dist",
-    "build": "webpack --progress --mode production",
+    "prebuild": "npx rimraf dist",
+    "build": "prebuild && webpack --progress --mode production",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
