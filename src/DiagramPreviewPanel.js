@@ -2,10 +2,10 @@ const path = require("path");
 
 const vscode = require("vscode");
 
-const getNonce = require("./util.js");
+const { getNonce } = require("./util.js");
 
 class DiagramPreviewPanel {
-  static viewType = "erdEditor-schemaHelper";
+  static contentProviderKey = "erdEditor-schemaHelper";
   _onDisposeEmitter = new vscode.EventEmitter();
   onDispose = this._onDisposeEmitter.event;
   _onDidChangeViewStateEmitter = new vscode.EventEmitter();
@@ -14,7 +14,7 @@ class DiagramPreviewPanel {
 
   static async create(source, viewColumn, extensionPath) {
     const panel = vscode.window.createWebviewPanel(
-      DiagramPreviewPanel.viewType,
+      DiagramPreviewPanel.contentProviderKey,
       DiagramPreviewPanel.getPreviewTitle(source.path),
       viewColumn,
       {

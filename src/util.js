@@ -10,7 +10,19 @@ function getNonce() {
   return text;
 }
 
+function isErdUri(uri) {
+  return uri.path.endsWith(".erd");
+}
+
+function isOutputPanel(uri) {
+  return uri.toString().startsWith("output:extension-output-");
+}
+
 let outputPanel = vscode.window.createOutputChannel("erdEditor");
 
-module.exports = getNonce;
-module.exports = { outputPanel };
+module.exports = {
+  getNonce,
+  isErdUri,
+  isOutputPanel,
+  outputPanel,
+};
