@@ -3,7 +3,7 @@
 const vscode = require("vscode");
 
 const { Disposable, disposeAll } = require("./dispose");
-const getNonce = require("./util");
+const { getNonce } = require("./util");
 
 /**
  * Define the doc (the data model)

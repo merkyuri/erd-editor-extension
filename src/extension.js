@@ -1,9 +1,22 @@
 const vscode = require("vscode");
 
-const DiagramEditorProvider = require("./DiagramEditorProvider.js");
+const CommandManager = require("./CommandManager.js");
+const { ActivatePreviewCommand } = require("./commands.js");
+const DiagramPreviewManager = require("./DiagramPreviewManager.js");
 
 function activate(context) {
   console.log("Congratulations, your extension is now active!");
+
+  const previewManager = new DiagramPreviewManager(context);
+  const commandManager = new CommandManager();
+
+  vscode.window.registerWebviewPanelSerializer(
+    "erdEditor-schemaHelper",
+    previewManager
+  );
+
+  context.subscriptions.push(commandManager);
+  commandManager.register(new ActivatePreviewCommand(previewManager));
 
   context.subscriptions.push(
     vscode.commands.registerCommand("erdEditor.helloworld", () => {
@@ -11,24 +24,6 @@ function activate(context) {
         "Welcome to ERD Editor-Schema Helper extension."
       );
     })
-  );
-
-  context.subscriptions.push(
-    // vscode.commands.registerCommand("erdEditor.webview", () => {
-    //   DiagramEditorProvider.register(context);
-
-    //   vscode.window
-    //     .showInformationMessage(
-    //       "Generated the ERD Editor with success!",
-    //       "Open"
-    //     )
-    //     .then((selected) => {
-    //       if (!selected) {
-    //         return;
-    //       }
-    //     });
-    // })
-    DiagramEditorProvider.register(context)
   );
 }
 

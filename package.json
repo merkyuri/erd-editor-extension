@@ -15,7 +15,6 @@
     "onCommand:erdEditor.helloworld",
     "onCommand:erdEditor.webview",
     "onWebviewPanel:erdEditor.webview",
-    "onCustomEditor:erdEditor.editor",
     "onView:erdEditor.webview"
   ],
   "main": "./src/extension.js",
@@ -24,27 +23,16 @@
       {
         "command": "erdEditor.helloworld",
         "title": "Greetings from ERD Editor-Schema Helper",
-        "category": "erdsh",
-        "icon": {
-          "light": "./icons/tree.svg",
-          "dark": "./icons/tree.svg"
-        }
+        "category": "ERD Editor-Schema Helper"
       },
       {
         "command": "erdEditor.webview",
         "title": "Webview for ERD Editor-Schema Helper",
-        "category": "erdsh"
-      }
-    ],
-    "customEditors": [
-      {
-        "viewType": "erdEditor.editor",
-        "displayName": "ERD Editor-Schema Helper",
-        "selector": [
-          {
-            "filenamePattern": "*.erdsh"
-          }
-        ]
+        "category": "ERD Editor-Schema Helper",
+        "icon": {
+          "light": "./icons/tree.svg",
+          "dark": "./icons/tree.svg"
+        }
       }
     ],
     "languages": [
@@ -56,7 +44,7 @@
           "erd"
         ],
         "extensions": [
-          ".erdsh"
+          ".erd"
         ]
       }
     ],
@@ -64,35 +52,35 @@
       "commandPalette": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erdsh",
+          "when": "resourceLangId == erd",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erdsh",
+          "when": "resourceLangId == erd",
           "group": "navigation"
         }
       ],
       "editor/title": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erdsh",
+          "when": "resourceLangId == erd",
           "group": "navigation"
         }
       ],
       "editor/title/context": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erdsh",
+          "when": "resourceLangId == erd",
           "group": "navigation"
         }
       ],
       "touchBar": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erdsh",
+          "when": "resourceLangId == erd",
           "group": "navigation"
         }
       ]
@@ -112,17 +100,17 @@
           "type": "webview",
           "id": "erdEditor.webview",
           "name": "ERD Editor-Schema Helper",
-          "when": "resourceLangId == erdsh",
+          "when": "resourceLangId == erd",
           "contextualTitle": "ERD Editor-Schema Helper"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "erdEditor.editor",
+        "command": "erdEditor.webview",
         "key": "shift+ctrl+e",
         "mac": "shift+cmd+e",
-        "when": "editorFocus && !editorReadonly && resourceExtname == .erdsh"
+        "when": "editorFocus && !editorReadonly && resourceExtname == .erd"
       }
     ]
   },
