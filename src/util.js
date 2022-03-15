@@ -1,3 +1,5 @@
+const vscode = require("vscode");
+
 function getNonce() {
   let text = "";
   const possible =
@@ -8,4 +10,7 @@ function getNonce() {
   return text;
 }
 
+let outputPanel = vscode.window.createOutputChannel("erdEditor");
+
 module.exports = getNonce;
+module.exports = { outputPanel };
