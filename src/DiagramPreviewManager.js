@@ -4,7 +4,7 @@ const DiagramPreviewPanel = require("./DiagramPreviewPanel.js");
 const { isOutputPanel } = require("./util.js");
 
 class DiagramPreviewManager {
-  static erdPreviewFocusContextKey = "erd-preview-focus";
+  static erdPreviewFocusContextKey = "erdPreviewFocus";
   _disposables = [];
   _previews = [];
   _activePreview;
