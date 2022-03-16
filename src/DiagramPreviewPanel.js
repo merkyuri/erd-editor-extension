@@ -111,6 +111,9 @@ class DiagramPreviewPanel {
       </head>
       <body>
         <div id="root"></div>
+        <script>
+          const vscode = acquireVsCodeApi();
+        </script>
         <script nonce="${nonce}" src="${scriptUri}"></script>
       </body>
     </html>

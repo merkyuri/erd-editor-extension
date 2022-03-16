@@ -118,7 +118,7 @@
     "vscode:prepublish": "npm run build",
     "start": "webpack-dev-server --mode development",
     "prebuild": "npx rimraf dist",
-    "build": "prebuild && webpack --progress --mode production",
+    "build": "npm run prebuild && webpack --progress --mode production",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
