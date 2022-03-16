@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from "react";
+import { connect } from "redux-zero/react";
 
+import actions from "./stores/actions.js";
 import Preview from "./components/Preview.jsx";
 import PreviewError from "./components/PreviewError.jsx";
 
@@ -114,4 +116,10 @@ class PreviewPage extends Component {
   }
 }
 
-export default PreviewPage;
+const mapToProps = (state) => ({
+  source: state.source,
+  scale: state.scale,
+  background: state.background,
+});
+
+export default connect(mapToProps, actions)(PreviewPage);

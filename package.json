@@ -6,13 +6,12 @@
   "description": "Entity Relationship Diagram Editor.",
   "author": "",
   "engines": {
-    "vscode": "^1.64.0"
+    "vscode": "^1.44.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:erdEditor.helloworld",
     "onCommand:erdEditor.webview",
     "onWebviewPanel:erdEditor.webview",
     "onView:erdEditor.webview"
@@ -20,11 +19,6 @@
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "erdEditor.helloworld",
-        "title": "Greetings from ERD Editor-Schema Helper",
-        "category": "ERD Editor-Schema Helper"
-      },
       {
         "command": "erdEditor.webview",
         "title": "Open ERD Editor-Schema Helper",
@@ -59,52 +53,39 @@
         }
       }
     },
-    "languages": [
-      {
-        "id": "erdEditor",
-        "aliases": [
-          "erdEditor",
-          "erdsh",
-          "erd"
-        ],
-        "extensions": [
-          ".erd"
-        ]
-      }
-    ],
     "menus": {
       "commandPalette": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ],
       "editor/title": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ],
       "editor/title/context": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ],
       "touchBar": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ]
@@ -124,7 +105,7 @@
           "type": "webview",
           "id": "erdEditor.webview",
           "name": "ERD Editor-Schema Helper",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "contextualTitle": "ERD Editor-Schema Helper"
         }
       ]
@@ -154,6 +135,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.3",
+    "css-loader": "^6.7.1",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-import": "^2.25.4",
@@ -168,6 +150,7 @@
     "lint-staged": "^12.3.4",
     "prettier": "2.5.1",
     "rimraf": "^3.0.2",
+    "style-loader": "^3.3.1",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
@@ -175,7 +158,7 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "styled-components": "^5.3.3"
+    "redux-zero": "^5.1.7"
   },
   "lint-staged": {
     "*.{js, jsx, html, css, json}": [

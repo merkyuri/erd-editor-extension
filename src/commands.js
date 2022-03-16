@@ -1,8 +1,5 @@
 const vscode = require("vscode");
 
-// const CommandManager = require("./CommandManager.js");
-// const DiagramPreviewManager = require("./DiagramPreviewManager.js");
-
 class ActivateCommand {
   constructor(webviewManager) {
     this.webviewManager = webviewManager;
