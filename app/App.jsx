@@ -1,13 +1,18 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import React, { Component } from "react";
 
-import Toolbar from "./components/Toolbar.jsx";
+import PreviewPage from "./PreviewPage.jsx";
+// import Toolbar from "./components/Toolbar.jsx";
 
-function App() {
-  return (
-    <>
-      <Toolbar />
-    </>
-  );
+class App extends Component {
+  render() {
+    return (
+      <>
+        <div>App</div>
+        <div>{this.props.source.data && <PreviewPage />}</div>
+      </>
+    );
+  }
 }
 
 export default App;
