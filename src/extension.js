@@ -3,6 +3,7 @@ const vscode = require("vscode");
 const CommandManager = require("./CommandManager.js");
 const DiagramPreviewManager = require("./DiagramPreviewManager.js");
 const { ActivatePreviewCommand } = require("./commands.js");
+const SaveAsPdfCommand = require("./commands/saveAsPdf.js");
 
 function activate(context) {
   console.log("Congratulations, your extension is now active!");
@@ -14,6 +15,7 @@ function activate(context) {
 
   context.subscriptions.push(commandManager);
   commandManager.register(new ActivatePreviewCommand(previewManager));
+  commandManager.register(new SaveAsPdfCommand(previewManager));
 
   // context.subscriptions.push(
   //   vscode.commands.registerCommand("erdEditor.helloworld", () => {

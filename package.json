@@ -13,6 +13,7 @@
   ],
   "activationEvents": [
     "onCommand:erdEditor.webview",
+    "onCommand:erdEditor.savePdf",
     "onWebviewPanel:erdEditor.webview",
     "onView:erdEditor.webview"
   ],
@@ -27,7 +28,12 @@
           "light": "./icons/tree.svg",
           "dark": "./icons/tree.svg"
         }
-      }
+      },
+      {
+				"command": "erdEditor.savePdf",
+				"title": "Save Diagram as PDF.",
+				"category": "ERD Editor-Schema Helper"
+			}
     ],
     "configuration": {
       "type": "object",
