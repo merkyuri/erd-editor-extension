@@ -35,6 +35,30 @@
         }
       }
     ],
+    "configuration": {
+      "type": "object",
+      "title": "ERD Editor-Schema Helper",
+      "properties": {
+        "erdEditor.erdPath": {
+          "description": "The path of the erd-go.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "isExecutable": true
+        },
+        "erdEditor.dotPath": {
+          "description": "The path of the dot:graphviz.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "isExecutable": true
+        }
+      }
+    },
     "languages": [
       {
         "id": "erdEditor",
