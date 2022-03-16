@@ -6,13 +6,12 @@
   "description": "Entity Relationship Diagram Editor.",
   "author": "",
   "engines": {
-    "vscode": "^1.64.0"
+    "vscode": "^1.44.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:erdEditor.helloworld",
     "onCommand:erdEditor.webview",
     "onWebviewPanel:erdEditor.webview",
     "onView:erdEditor.webview"
@@ -20,11 +19,6 @@
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "erdEditor.helloworld",
-        "title": "Greetings from ERD Editor-Schema Helper",
-        "category": "ERD Editor-Schema Helper"
-      },
       {
         "command": "erdEditor.webview",
         "title": "Open ERD Editor-Schema Helper",
@@ -59,52 +53,39 @@
         }
       }
     },
-    "languages": [
-      {
-        "id": "erdEditor",
-        "aliases": [
-          "erdEditor",
-          "erdsh",
-          "erd"
-        ],
-        "extensions": [
-          ".erd"
-        ]
-      }
-    ],
     "menus": {
       "commandPalette": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ],
       "editor/title": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ],
       "editor/title/context": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ],
       "touchBar": [
         {
           "command": "erdEditor.webview",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "group": "navigation"
         }
       ]
@@ -124,7 +105,7 @@
           "type": "webview",
           "id": "erdEditor.webview",
           "name": "ERD Editor-Schema Helper",
-          "when": "resourceLangId == erd",
+          "when": "extensionStatus === installed",
           "contextualTitle": "ERD Editor-Schema Helper"
         }
       ]
