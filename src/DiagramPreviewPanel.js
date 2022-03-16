@@ -77,6 +77,15 @@ class DiagramPreviewPanel {
     this._panel.dispose();
   }
 
+  setPanelIcon() {
+    const root = path.join(this._extensionPath, "media");
+
+    this._panel.iconPath = {
+      light: vscode.Uri.file(path.join(root, "Preview.svg")),
+      dark: vscode.Uri.file(path.join(root, "Preview_inverse.svg")),
+    };
+  }
+
   postMessage(message) {
     if (this._panel.visible) {
       this._panel.webview.postMessage(message);
