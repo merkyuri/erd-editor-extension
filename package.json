@@ -27,7 +27,7 @@
       },
       {
         "command": "erdEditor.webview",
-        "title": "Webview for ERD Editor-Schema Helper",
+        "title": "Open ERD Editor-Schema Helper",
         "category": "ERD Editor-Schema Helper",
         "icon": {
           "light": "./icons/tree.svg",

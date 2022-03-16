@@ -77,6 +77,15 @@ class DiagramPreviewPanel {
     this._panel.dispose();
   }
 
+  setPanelIcon() {
+    const root = path.join(this._extensionPath, "media");
+
+    this._panel.iconPath = {
+      light: vscode.Uri.file(path.join(root, "Preview.svg")),
+      dark: vscode.Uri.file(path.join(root, "Preview_inverse.svg")),
+    };
+  }
+
   postMessage(message) {
     if (this._panel.visible) {
       this._panel.webview.postMessage(message);
@@ -94,9 +103,13 @@ class DiagramPreviewPanel {
     const scriptPath = vscode.Uri.file(
       path.join(this._extensionPath, "dist", "app", "index.bundle.js")
     );
+    const stylePath = vscode.Uri.file(
+      path.join(this._extensionPath, "app", "components", "styles.css")
+    );
 
     const baseUri = webview.asWebviewUri(basePath);
     const scriptUri = webview.asWebviewUri(scriptPath);
+    const styleUri = webview.asWebviewUri(stylePath);
 
     const nonce = getNonce();
 
@@ -106,6 +119,7 @@ class DiagramPreviewPanel {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="${styleUri}" rel="stylesheet" type="text/css">
         <title>ERD Editor-Schema Helper</title>
         <base href="${baseUri}">
       </head>
