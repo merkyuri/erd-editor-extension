@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from "react";
+import { connect } from "redux-zero/react";
 
+import actions from "./stores/actions.js";
 import Toolbar from "./components/Toolbar.jsx";
 import { getByteCountByContent, fileSize } from "./utils/fileSize.js";
 
@@ -57,4 +59,9 @@ class ToolbarContainer extends Component {
   }
 }
 
-export default ToolbarContainer;
+const mapToProps = (state) => ({
+  source: state.source,
+  sourceImageValidity: state.sourceImageValidity,
+});
+
+export default connect(mapToProps, actions)(ToolbarContainer);

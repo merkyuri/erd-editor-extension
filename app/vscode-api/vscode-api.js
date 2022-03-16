@@ -1,3 +1,3 @@
 function acquireVsCodeApi() {}
 
-export default acquireVsCodeApi();
+export default acquireVsCodeApi;

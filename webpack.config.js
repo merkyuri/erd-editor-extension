@@ -4,13 +4,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  devtool: "source-map",
+  devtool: "eval",
   entry: {
     app: path.resolve(__dirname, "app", "index.jsx"),
   },
   output: {
     path: path.resolve(__dirname, "dist", "app"),
-    filename: "index.bundle.js",
+    filename: "bundle.js",
   },
   resolve: {
     // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
@@ -27,6 +27,10 @@ module.exports = {
             presets: ["@babel/preset-env", "@babel/preset-react"],
           },
         },
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

@@ -204,43 +204,58 @@ class DiagramPreviewPanel {
   }
 
   getHtmlForWebview() {
+    const nonce = getNonce();
     const webview = this._panel.webview;
 
     const basePath = vscode.Uri.file(
       path.join(this._extensionPath, "dist", "app")
     );
     const scriptPath = vscode.Uri.file(
-      path.join(this._extensionPath, "dist", "app", "index.bundle.js")
+      path.join(this._extensionPath, "dist", "app", "bundle.js")
     );
     const stylePath = vscode.Uri.file(
       path.join(this._extensionPath, "app", "components", "styles.css")
     );
 
-    const baseUri = webview.asWebviewUri(basePath);
-    const scriptUri = webview.asWebviewUri(scriptPath);
-    const styleUri = webview.asWebviewUri(stylePath);
-
-    const nonce = getNonce();
-
-    return /* html */ `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="${styleUri}" rel="stylesheet" type="text/css">
-        <title>ERD Editor-Schema Helper</title>
-        <base href="${baseUri}">
-      </head>
-      <body>
-        <div id="root"></div>
-        <script>
-          const vscode = acquireVsCodeApi();
-        </script>
-        <script nonce="${nonce}" src="${scriptUri}"></script>
-      </body>
-    </html>
+    const baseUri = `<base href="${webview.asWebviewUri(basePath)}">`;
+    const securityPolicy = `
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src ${webview.cspSource}; img-src ${webview.cspSource} data:; script-src ${webview.cspSource}; style-src ${webview.cspSource};"
+      />
     `;
+    const styleUri = `<link rel="stylesheet" type="text/css" href="${webview.asWebviewUri(
+      stylePath
+    )}">`;
+    const scriptUri = `<script type="text/javascript" nonce="${nonce}" src="${webview.asWebviewUri(
+      scriptPath
+    )}"></script>`;
+
+    return `<!DOCTYPE html><html><head>${baseUri}${securityPolicy}${styleUri}</head><body>${scriptUri}</body></html>`;
+
+    // const baseUri = webview.asWebviewUri(basePath);
+    // const scriptUri = webview.asWebviewUri(scriptPath);
+    // const styleUri = webview.asWebviewUri(stylePath);
+
+    // return /* html */ `
+    // <!DOCTYPE html>
+    // <html lang="en">
+    //   <head>
+    //     <meta charset="UTF-8">
+    //     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    //     <link href="${styleUri}" rel="stylesheet" type="text/css">
+    //     <title>ERD Editor-Schema Helper</title>
+    //     <base href="${baseUri}">
+    //   </head>
+    //   <body>
+    //     <div id="root"></div>
+    //     <script>
+    //       const vscode = acquireVsCodeApi();
+    //     </script>
+    //     <script nonce="${nonce}" src="${scriptUri}"></script>
+    //   </body>
+    // </html>
+    // `;
   }
 
   escapeHtml(unsafe) {

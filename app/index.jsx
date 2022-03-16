@@ -1,7 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
+import { Provider } from "redux-zero/react";
 
 import App from "./App.jsx";
+import store from "./stores";
 import "./messaging/index.js";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.body
+);
