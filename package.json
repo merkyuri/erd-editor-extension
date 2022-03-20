@@ -22,7 +22,7 @@
     "commands": [
       {
         "command": "erdEditor.webview",
-        "title": "Open ERD Editor-Schema Helper",
+        "title": "Open ERD preview.",
         "category": "ERD Editor-Schema Helper",
         "icon": {
           "light": "./icons/tree.svg",
@@ -39,7 +39,7 @@
       "type": "object",
       "title": "ERD Editor-Schema Helper",
       "properties": {
-        "erdEditor.erdPath": {
+        "erdEditorSchemaHelper.erdPath": {
           "description": "The path of the erd-go.",
           "type": [
             "string",
@@ -48,7 +48,7 @@
           "default": null,
           "isExecutable": true
         },
-        "erdEditor.dotPath": {
+        "erdEditorSchemaHelper.graphPath": {
           "description": "The path of the dot:graphviz.",
           "type": [
             "string",
